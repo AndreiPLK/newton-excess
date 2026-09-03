@@ -1,0 +1,4 @@
+Bernoulli remainder lemma (K=6): True  [2185 boxes]
+  coverage: theta(Y = 1/35) <= 0.89833 <= 0.9: True
+FAILED box: 0.0 0.0007137758743754461 1.542172956266865e-80 3.08434591253373e-80 {'why': 'k2 not positive'}
+EXIT 1

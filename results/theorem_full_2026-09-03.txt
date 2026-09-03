@@ -1,0 +1,19 @@
+THE NEWTON EXCESS OF THE CENTRED-SQUARE SPECTRUM:  M(n,t) > 4/5
+
+  B. n = 1257: min over t >= 628 of M(n,t) = 1.807003  > 4/5 : True   [1 s]
+  B. n = 1259: min over t >= 628 of M(n,t) = 1.803808  > 4/5 : True   [2 s]
+  coverage: khat_1 = theta/V on V <= 17/100, zeta <= 6/25: in [0.30274, 0.33334]
+     theta <= 0.05 => V <= 0.16516 <= 0.17;  b >= 1 => zeta <= 0.22223 <= 0.24;
+     t >= 628 => eta <= 0.001062 <= 0.00107.   Coverage of C by C1 u C2 u C3: True
+  A. the ladder t <= 627: OK: wrote C:\Users\user\ScienceBro\projects\qg-bootstrap\lab\..\results\m_ladder_log_2026-09-02_full.txt; total 7.06 h of rung time
+     sample re-verification of rungs 1..12 by ladder_fast.py:
+             9      82       7   n <=    23      0.0s
+            10      90       6   n <=    25      0.0s
+            11      98       8   n <=    27      0.0s
+            12     106       7   n <=    29      0.0s
+  C. sparse_certificate_full.py: exit 0  VERDICT: Phi N > 4/5 on { tau >= 627, tau^2/N <= 1 } (every tau, no side constraint): True   [2 s]  [2 s]
+  C. dense_certificate_a.py: exit 0  VERDICT: N g > 4/5 on the dense region (a) { 0.05 <= theta <= 1/2, x >= 628, N >= 1260 } : True  [275 s]  [275 s]
+  C. dense_certificate_b.py: exit 0  VERDICT: N g > 4/5 on the dense region (b) { V <= 17/100, zeta <= 6/25, zeta V <= 107/100000 }: True   [30 s]  [30 s]
+
+THEOREM: M(n,t) > 4/5 for every odd n >= 5 and every t < n/2 -- all pieces in place.  [310 s]
+EXIT 0

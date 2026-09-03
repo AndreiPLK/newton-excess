@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "A floor under Newton's inequality: a sharp constant for the centred-square spectrum, and Sibuya's 1988 conjecture"
+message: "If you use these results or the certificates, please cite this record."
+type: dataset
+authors:
+  - given-names: Andrei
+    family-names: Pluzhnik
+    orcid: "https://orcid.org/0009-0005-5660-2603"
+abstract: >-
+  Machine-checked proofs of two quantitative strengthenings of Newton's inequality for the
+  normalised coefficients of real-rooted polynomials: a sharp floor 4/5 for the centred-square
+  spectrum, and large parts of Sibuya's 1988 conjecture for the unsigned Stirling numbers of the
+  first kind. Every computation is exact rational or certified interval arithmetic, every
+  certificate is an exit-0 script with a logged run, and each was validated by an independent
+  re-implementation.
+keywords:
+  - Newton's inequalities
+  - log-concavity
+  - Stirling numbers of the first kind
+  - Sibuya's conjecture
+  - certified computation
+license: MIT

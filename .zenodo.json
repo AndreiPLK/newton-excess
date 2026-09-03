@@ -1,0 +1,24 @@
+{
+  "title": "A floor under Newton's inequality: a sharp constant for the centred-square spectrum, and Sibuya's 1988 conjecture",
+  "description": "Machine-checked proofs of two quantitative strengthenings of Newton's inequality (1707) for the normalised coefficients of real-rooted polynomials. (1) For the centred-square spectrum (the odd squares, each twice) the Newton excess M(n,t) = n(p_t^2/(p_{t-1}p_{t+1}) - 1) exceeds 4/5 for every odd n >= 5 and every t < n/2, with the constant sharp and equal to the limiting relative variance of the roots. (2) Large parts of Sibuya's 1988 conjecture (Ann. Inst. Statist. Math. 40, eq. 3.4) for the unsigned Stirling numbers of the first kind. Every computation is exact rational or certified interval arithmetic; each certificate is an exit-0 script with a logged run, and each was validated by an independent re-implementation.",
+  "creators": [
+    {"name": "Pluzhnik, Andrei", "orcid": "0009-0005-5660-2603"}
+  ],
+  "keywords": [
+    "Newton's inequalities",
+    "log-concavity",
+    "Stirling numbers of the first kind",
+    "Sibuya's conjecture",
+    "real-rooted polynomials",
+    "certified computation",
+    "interval arithmetic",
+    "elementary symmetric functions"
+  ],
+  "license": "MIT",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "language": "eng",
+  "related_identifiers": [
+    {"identifier": "10.5281/zenodo.21915627", "relation": "isPartOf", "resource_type": "software"}
+  ]
+}

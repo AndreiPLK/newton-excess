@@ -1,0 +1,2 @@
+Sibuya (3.4), the window 33 <= j' <= 802, every N >= 1001 + j':
+  H-model tail (H >= 20.0, i.e. N >= 4.85e+08): 770/770 indices certified by the shift  [177 s]

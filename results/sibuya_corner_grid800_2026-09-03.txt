@@ -1,0 +1,4 @@
+Sibuya (3.4), the window 33 <= j' <= 800, every N >= 1001 + j':
+  H-model tail (H >= 20.0, i.e. N >= 4.85e+08): 768/768 indices certified by the shift  [52 s]
+  grid 1000000 -> 485165195: FAIL  grid FAILED at N = 1000000 (step could not be shrunk enough)
+EXIT 1

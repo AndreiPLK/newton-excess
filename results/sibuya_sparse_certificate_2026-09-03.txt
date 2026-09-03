@@ -1,0 +1,14 @@
+  P~ built: 795 terms, degrees (58, 44, 1)  [0.0 s]
+  Phat: 5688 terms, degrees (120, 89, 2)  [0.1 s]
+  [a^0] = 0
+  [a^1] = 0
+  [a^2] = 0
+  [a^3](b, Z): 34 terms, lowest power of b: 2
+  [a^3]/b^2 at b = 0: 2/3   (2/3: True)
+  (iii) SUM_k |[a^k]/b^2| a^(k-3) <= 2.8142e-03
+  (v)  tail  j > 30: effect relative to a b <= 6.952e-14
+  (vi) finite-m moments: effect relative to a b <= 4.257e-02
+  (i)+(ii) sweep over b in [0, 1]: 1 boxes, min of [a^3]/b^2 - (iii) - (v) - (vi) = 0.290647
+
+VERDICT (lemma constants independently validated 3 Sept 2026): (3 + 3a^2 b - ab) N Phi > 1 on { tau >= 1000, tau^2/N <= 1 }: True   [2 s]
+EXIT 0

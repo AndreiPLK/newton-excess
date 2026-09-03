@@ -1,0 +1,15 @@
+Sibuya (3.4), the window 33 <= j' <= 802, every N >= 1001 + j':
+  H-model tail (H >= 20.0, i.e. N >= 4.85e+08): 770/770 indices certified by the shift  [173 s]
+  exact recursion N <= 1000000: ok  j' < 803, N <= 10^6, worst rel 1.4668e-04
+    grid: N = 1.7160e+06, H = 14.933, 500 steps, worst rel 5.32e-09  [466 s]
+    grid: N = 3.0234e+06, H = 15.499, 1000 steps, worst rel 4.18e-10  [930 s]
+    grid: N = 5.4726e+06, H = 16.092, 1500 steps, worst rel 4.18e-10  [1395 s]
+    grid: N = 1.0167e+07, H = 16.712, 2000 steps, worst rel 4.18e-10  [1871 s]
+    grid: N = 1.9481e+07, H = 17.362, 2500 steps, worst rel 4.18e-10  [2363 s]
+    grid: N = 3.8257e+07, H = 18.037, 3000 steps, worst rel 1.92e-10  [2852 s]
+    grid: N = 7.7558e+07, H = 18.744, 3500 steps, worst rel 1.92e-10  [3362 s]
+    grid: N = 1.6118e+08, H = 19.475, 4000 steps, worst rel 1.92e-10  [3884 s]
+    grid: N = 3.4967e+08, H = 20.250, 4500 steps, worst rel 1.92e-10  [4395 s]
+  grid 1000000 -> 485165195: ok  4705 grid steps 1.000e+06 -> 4.852e+08, worst relative margin 1.924e-10  [4588 s]
+
+VERDICT: Sibuya (3.4) holds for 33 <= j' <= 802 and every N (exact recursion N <= 1000000 from sibuya_exact_pass_803_2026-09-03.txt, grid to 485165195, H-model beyond): True  [4761 s]

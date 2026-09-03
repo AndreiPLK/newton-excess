@@ -1,0 +1,9 @@
+Bernoulli remainder lemma (K=6): True  [2185 boxes]
+  self-test N = 5000, v = [0.70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 +/- 1.97e-91]: max |mid(closed form) - mid(exact sum)| = 4.90e-50, max radius 2.80e-49, exact inside the enclosure: True
+  self-test N = 4002, v = 2.5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000: max |mid(closed form) - mid(exact sum)| = 1.68e-41, max radius 9.64e-41, exact inside the enclosure: True
+  self-test N = 20000, v = [0.22000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 +/- 2.97e-92]: max |mid(closed form) - mid(exact sum)| = 5.25e-65, max radius 3.13e-64, exact inside the enclosure: True
+  self-test PASS
+  coverage: theta(eps, 35.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) <= 0.89860 < 9/10;  theta(eps, 2000.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000) >= 0.99619 > 99/100
+certified: 303 boxes ok, 473 skipped, worst margin N g - 1/(3 + 3 eps - theta) >= 1.033092 at eps=4.95e-04, v=50.1117 (N g >= 1.514500)
+EXPLORATORY (not a certificate; the VERDICT line of this run was printed by the generic code and is superseded by the script's --top2 message): boxes ok on { 9/10 <= theta <= 99/100, t >= 1001 } EXCEPT the corner j' < 100 or x < 20 and a sliver along eps v = 1/20 (skipped)  [37 s]
+EXIT 0

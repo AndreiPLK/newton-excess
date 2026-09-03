@@ -1,0 +1,9 @@
+Sibuya (3.4), the window 33 <= j' <= 399, every N >= 1001 + j':
+  H-model tail (H >= 20.0, i.e. N >= 4.85e+08): 367/367 indices certified by the shift  [11 s]
+    grid: N = 4.0655e+06, H = 15.795, 500 steps, worst rel 1.32e-08  [143 s]
+    grid: N = 1.9334e+07, H = 17.355, 1000 steps, worst rel 2.08e-09  [271 s]
+    grid: N = 1.0698e+08, H = 19.065, 1500 steps, worst rel 2.08e-09  [393 s]
+  grid 1000000 -> 485165195: ok  1904 grid steps 1.000e+06 -> 4.852e+08, worst relative margin 2.083e-09  [493 s]
+
+VERDICT: Sibuya (3.4) holds for 33 <= j' <= 399 and every N (exact recursion N <= 1000000 by sibuya_harmonic.py, grid to 485165195, H-model beyond): True  [504 s]
+EXIT 0

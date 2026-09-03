@@ -1,0 +1,12 @@
+SIBUYA'S CONJECTURE (1988, eq. 3.4):  p_j^2/(p_{j-1} p_{j+1}) >= 1 + 1/(3n - j)
+
+  A'. the ladder j <= 1000: OK: wrote C:\Users\user\ScienceBro\projects\qg-bootstrap\lab\..\results\sibuya_ladder_log_full.txt; total 3.53 h
+  coverage: khat_1 on v <= 6/25, zeta <= 13/50: in [0.42918, 0.50005];  theta(VMAX) >= 0.10324 > 0.1: True
+     N < (j+1)^2 => zeta <= 0.25005 <= 0.26;  j >= 1001 => eta <= 4.996e-04 <= 0.00051.   Coverage of C' by C1' u C2' u C3': True
+  C'. sibuya_sparse_certificate.py: exit 0  VERDICT (lemma constants independently validated 3 Sept 2026): (3 + 3a^2 b - ab) N Phi > 1 on { tau >= 1000, tau^2/N <= 1 }: True   [2 s]  [3 s]
+  C'. sibuya_dense_a.py: exit 0  VERDICT: N g > 1/(3 + 3/N - theta) on the dense region (a') { 1/10 <= theta <= 1/2, t >= 1001, N >= 2002 } : True  [307 s]  [307 s]
+  C'. sibuya_dense_a.py --top: exit 0  VERDICT: N g > 1/(3 + 3/N - theta) on the dense region (a') { 1/2 <= theta <= 9/10, t >= 1001, N >= 1112 } : True  [15 s]  [15 s]
+  C'. sibuya_dense_b.py: exit 0  VERDICT: (3 + 3/N - theta) N g > 1 on the dense region (b') { v <= 6/25, zeta <= 13/50, zeta v <= 51/100000 }: True   [481 s]  [481 s]
+
+SIBUYA (3.4): p_j^2/(p_{j-1}p_{j+1}) >= 1 + 1/(3n - j) CERTIFIED for j <= 1000 (every n) and for theta <= 9/10; OPEN: theta > 9/10 (see OBSTRUCTION.md); all four certificates independently validated (results/VALIDATION_SIBUYA_*_2026-09-03.md).  [806 s]
+EXIT 0

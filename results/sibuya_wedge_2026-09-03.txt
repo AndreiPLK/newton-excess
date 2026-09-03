@@ -1,0 +1,10 @@
+Sibuya (3.4), the wedge: theta >= 0.9 and j' >= 803, bands in Y from 0.0286 down to 1e-30
+  ... Y = 1.735e-06, 200 bands, worst margin 1.628e+00  [35 s]
+  ... Y = 1.003e-10, 400 bands, worst margin 1.628e+00  [72 s]
+  ... Y = 5.802e-15, 600 bands, worst margin 1.628e+00  [108 s]
+  ... Y = 3.355e-19, 800 bands, worst margin 1.628e+00  [144 s]
+  ... Y = 1.940e-23, 1000 bands, worst margin 1.628e+00  [179 s]
+  ... Y = 1.122e-27, 1200 bands, worst margin 1.628e+00  [211 s]
+certified: 1343 bands down to Y = 1e-30, worst margin 1.6283e+00
+FAILED (corner): corner FAILED at L = 1238, r in [1.201e+00, 1.201e+00]: {'slack': [+/- 1.78e-7], 'E': [0.00048454567845667081919315216617614074106741362304567862296736978193354216699121823482271871 +/- 1.43e-93], 'sigma2': [1030.1376245261744513116101618473544667813959054436793969275786386203383866454694513790477 +/- 1.16e-86], 'm': [1237.4887 +/- 2.59e-5], 'W': [0.600 +/- 3.81e-4]}
+EXIT 1

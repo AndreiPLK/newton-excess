@@ -1,0 +1,4 @@
+exact recursion, every j' < 803 and every N in [1001 + j', 10^6]: ok = True
+  worst relative margin 1.4668e-04 at N = 1000000, j' = 802
+[2671 s]
+EXIT 0

@@ -1,0 +1,9 @@
+Sibuya (3.4), the corner j' = N - j in [1, 32], every N >= 1001 + j':
+  exact recursion N <= 1000000: all j' ok; worst relative margin 2.1833e-03 at N = 1000000, j' = 32  [105 s]
+  j' =   1: ok  1 band(s) 1000000 -> 2^48; tail at 2^48: c_min = 1.645e+00, e^-H term = 6.920e-12  [0.0 s]
+  j' =   2: ok  1 band(s) 1000000 -> 2^48; tail at 2^48: c_min = 3.929e-01, e^-H term = 1.730e-12  [0.0 s]
+  j' =   3: ok  1 band(s) 1000000 -> 2^48; tail at 2^48: c_min = 4.158e-02, e^-H term = 1.922e-13  [0.0 s]
+  j' =  20: ok  1 band(s) 1000000 -> 2^96; tail at 2^96: c_min = 1.506e-37, e^-H term = 1.633e-62  [5.1 s]
+
+VERDICT: Sibuya (3.4) holds for j' = N - j in [1, 32] and every N >= 1001 + j' (exact recursion to 1000000, bands to 2^48, analytic tail): True  [271 s]
+EXIT 0

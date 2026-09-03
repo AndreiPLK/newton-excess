@@ -1,0 +1,7 @@
+Bernoulli remainder lemma (K=6): True  [2185 boxes]
+  ... 367 ok, 133 skipped, stack 9  [105 s]
+  ... 367 ok, 133 skipped, stack 10  [105 s]
+  ... 825 ok, 175 skipped, stack 8  [251 s]
+certified: 930 boxes ok, 213 skipped, worst N g lower bound 0.800004 at eps=1.61e-04, v=0.4136
+VERDICT: N g > 4/5 on the dense region (a) { 0.05 <= theta <= 1/2, x >= 628, N >= 1260 } : True  [288 s]
+EXIT 0

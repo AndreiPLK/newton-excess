@@ -1,0 +1,2 @@
+  3000  True  bracket B >= 0 dropped on [20, 25]; naive shift from h2 = 25  [419 s]
+  4000  True  bracket B >= 0 dropped on [20, 25]; naive shift from h2 = 25  [1167 s]
