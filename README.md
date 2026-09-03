@@ -6,7 +6,9 @@ Newton proved in 1707 that the normalised coefficients of a real-rooted polynomi
 `p_t² ≥ p_{t-1} p_{t+1}`. This repository proves that for two classical families the inequality holds with a
 **definite margin**, and identifies that margin exactly.
 
-![The excess surface and the floor 4/5](data/theorem_3d.svg)
+![The excess surface and the floor 4/5](data/theorem_3d.png)
+
+*Rendered from exact values by `scripts/fig3d_theorem_plotly.py`; the dependency-free SVG version is `data/theorem_3d.svg`.*
 
 ---
 
