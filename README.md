@@ -1,14 +1,12 @@
 # A floor under Newton's inequality
 
-**Andrei Pluzhnik** — ORCID [0009-0005-5660-2603](https://orcid.org/0009-0005-5660-2603) · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22282840.svg)](https://doi.org/10.5281/zenodo.22282840)
+**Andrey Pluzhnik** — ORCID [0009-0005-5660-2603](https://orcid.org/0009-0005-5660-2603) · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22282840.svg)](https://doi.org/10.5281/zenodo.22282840)
 
 Newton proved in 1707 that the normalised coefficients of a real-rooted polynomial are log-concave:
 `p_t² ≥ p_{t-1} p_{t+1}`. This repository proves that for two classical families the inequality holds with a
 **definite margin**, and identifies that margin exactly.
 
-![The excess surface and the floor 4/5](data/theorem_3d.png)
-
-*Rendered from exact values by `scripts/fig3d_theorem_plotly.py`; the dependency-free SVG version is `data/theorem_3d.svg`.*
+![The excess surface and the floor 4/5](data/theorem_3d.svg)
 
 ---
 
@@ -106,15 +104,3 @@ MIT (see `../../../LICENSE`). If you use this, please cite the DOI of the Zenodo
 The proofs were constructed and the code written in collaboration with an AI assistant, under the author's
 direction; see [AI_DISCLOSURE.md](AI_DISCLOSURE.md). Every certificate is machine-checked and every claim in the
 article points at a logged run.
-
----
-
-## About this lab, honestly
-
-This is an independent, AI-assisted lab: one person, an AI agent, and a hard house rule that the agent never
-gets to mark its own work as verified. Every claim above passed deterministic gates, an independent
-re-implementation, and two adversarial reviews whose reports ship in `results/` — including the one that found
-a real mistake in a derivation on the day of release, and the repair. We are not a university group and do
-not pretend to be one; we are trying to do careful work and to join a conversation that has been going on
-since 1707. If you find an error, we would genuinely like to hear it, and it will be fixed and logged in
-public. Full disclosure of what the AI did and did not do: [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md).

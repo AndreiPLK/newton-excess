@@ -4,7 +4,7 @@ Stated plainly, because it matters for how the result should be read.
 
 ## Roles
 
-- **Andrei Pluzhnik** — the research question, every decision about what to pursue, approval of
+- **Andrey Pluzhnik** — the research question, every decision about what to pursue, approval of
   every claim's status, and all publishing. The interventions that changed the direction of the
   work are recorded in the parent repository's night report.
 - **Claude Opus 5, via Claude Code** — the implementation: writing and running the computations,
