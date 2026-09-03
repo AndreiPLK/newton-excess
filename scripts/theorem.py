@@ -19,7 +19,7 @@ The pieces, each an exit-0 script under release/scripts/, and how they fit:
     coefficient khat_1 = theta/V:  with khat_1 in [0.30, 1/3] on V <= 0.17,
         theta <= 0.05  =>  V <= 0.05/0.30 <= 0.17 ;   t^2/N >= 1  =>  zeta = 2 khat_1^2/b <= 2/9 < 0.24 ;
         t >= 628       =>  eta = zeta V = 2 khat_1/t <= 2/(3*628) < 1.07e-3 .
-    (Overlaps: C1 and C3 meet at b = 1, C2 and C3 meet at theta = 0.05.)
+    (Overlaps: C1 reaches b <= (628/629)^2, its own docstring condition, and C3 reaches down past b = 0.926, so they overlap on a band rather than meeting at b = 1 -- the earlier text said "meet at b = 1", corrected after the 2026-09-03 verifier report; C2 and C3 meet at theta = 0.05.)
 
 Run:  uv run python projects/qg-bootstrap/release/scripts/theorem.py [--full]
       --full also re-runs the three certificates (about 5 minutes); without it their recorded
