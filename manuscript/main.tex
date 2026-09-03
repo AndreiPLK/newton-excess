@@ -1,0 +1,253 @@
+\documentclass[12pt]{article}
+\usepackage{e-jc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{url}
+\hypersetup{hidelinks}
+
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\ee}{\mathrm{e}}
+\DeclareMathOperator{\Var}{Var}
+
+\title{Quantitative Newton inequalities: a sharp constant for the centred-square spectrum, and most of Sibuya's 1988 conjecture}
+
+\author{Andrei Pluzhnik\\
+\small Independent researcher\\
+\small ORCID 0009-0005-5660-2603\\
+\small \texttt{andypluzhnik@gmail.com}}
+
+\dateline{September 2026}{}{}
+\Copyright{The author. Released under the CC BY-ND license (International 4.0).}
+\MSC{05A20, 05A10, 26D15, 11B73}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Newton's inequality states that the normalised coefficients $p_j = e_j/\binom{N}{j}$ of a polynomial with $N$ positive roots are log-concave, $p_j^2 \ge p_{j-1}p_{j+1}$, and says nothing about the size of the margin. We measure the margin for two classical families. (1) For the centred-square spectrum $\{(n-2k)^2 : k=1,\dots,n-1\}$ (the odd squares, each twice), which governs partial-wave positivity of the three-parameter family of deformed Veneziano amplitudes, the Newton excess $M(n,t) = n\,(p_t^2/(p_{t-1}p_{t+1})-1)$ exceeds $4/5$ for every odd $n\ge5$ and every $t<n/2$; the constant is sharp, and it is the limiting relative variance of the roots. The proof is a finite decomposition into five machine-checked pieces and is complete. (2) For the unsigned Stirling numbers of the first kind, Sibuya conjectured in 1988 that $p_j^2/(p_{j-1}p_{j+1}) \ge 1 + 1/(3n-j)$. We prove this for every $j\le 1000$ and every $n$, for every $j\ge 1001$ with $j/(n-1)\le 0.9$, and at the top of the row whenever at most $802$ indices are missing; the residual region is stated exactly. Every error term is an explicit interval computed in certified arithmetic, never an $O(\cdot)$, and every certificate is an exit-$0$ script with a logged run, independently re-implemented and adversarially reviewed.
+
+\end{abstract}
+
+\section{Introduction}
+
+Let $b_1,\dots,b_N>0$, let $e_j = e_j(b_1,\dots,b_N)$ be the elementary symmetric functions, and let $p_j = e_j/\binom{N}{j}$. Newton's inequality (1707) is
+\begin{equation}\label{eq:newton}
+R_j := \frac{p_j^2}{p_{j-1}\,p_{j+1}} \;\ge\; 1, \qquad 1\le j\le N-1,
+\end{equation}
+with equality throughout only when all $b_k$ coincide. The inequality is stated as ``at least'', and for a specific family the natural quantitative question is how far past that boundary the coefficients actually sit. With $n = N+1$ we call
+\begin{equation}\label{eq:excess}
+M(n,t) := n\,(R_t - 1)
+\end{equation}
+the \emph{Newton excess}. Two elementary facts fix its scale. At the first index, Newton's identities give exactly $M(n,1) = \rho\,n/(N-1-\rho)$ with $\rho = \Var(b)/\bar b^{\,2}$ the relative variance of the roots; and for the family $b_k = k^p$ on $k=1,\dots,m$ one has $\rho \to \Var(u^p)/\mathbb{E}(u^p)^2 = p^2/(2p+1)$ as $m\to\infty$, so $1/3$ for $p=1$, $4/5$ for $p=2$, $9/7$ for $p=3$.
+
+This paper proves two statements of the form ``the excess never drops below its own limiting scale''.
+
+\begin{theorem}[the centred-square spectrum]\label{thm:A}
+Let $n\ge 5$ be odd and let $b_k = (n-2k)^2$ for $k = 1,\dots,n-1$, so that the roots are the odd squares $1, 9, \dots, (n-2)^2$, each taken twice. Then
+\[
+M(n,t) \;>\; \tfrac{4}{5} \qquad\text{for every } t < n/2 .
+\]
+The constant is sharp: $M(n,1)$ decreases to $4/5$ as $n\to\infty$ and never reaches it.
+\end{theorem}
+
+\begin{theorem}[Sibuya's conjecture, large parts]\label{thm:B}
+Let $b_k = k$ for $k=1,\dots,n-1$, so that $e_j = c(n,\,n-j)$, the unsigned Stirling numbers of the first kind, and Newton's inequality is the log-concavity of the row $c(n,\cdot)$. Then
+\[
+\frac{p_j^2}{p_{j-1}p_{j+1}} \;\ge\; 1 + \frac{1}{3n-j}
+\]
+holds, with equality at $j=1$, in each of the following ranges: (i) every $j\le 1000$ and every $n$; (ii) every $j\ge 1001$ with $j/(n-1)\le 0.9$; (iii) every $n$ and every $j$ with $n-1-j \le 802$.
+\end{theorem}
+
+The inequality in Theorem~\ref{thm:B} is equation (3.4) of Sibuya \cite{Sibuya1988}, stated there as a conjecture; as far as our search of the citing literature reaches, it has not been proved, disproved or restated since. The region not covered by Theorem~\ref{thm:B} is described exactly in Section~\ref{sec:open}, together with the obstruction that stops both of our instruments there.
+
+The universal form of these statements is false: for the density $1/(1+u)$ on $[0,1]$ the minimum of $M(n,t)$ over $t$ falls below the relative variance of the roots. Both theorems are therefore statements about a family, not about all real-rooted polynomials.
+
+\paragraph{Where the centred-square spectrum comes from.}
+It is the spectrum of the graviton partial-wave problem for the three-parameter family of deformed Veneziano amplitudes of Cheung, Hillman and Remmen \cite{CHR2024}: the region of parameter space in which the deformation remains unitary is governed by the same odd squares. Theorem~\ref{thm:A} says how sharply the coefficients of that boundary problem are log-concave. Reading the floor back onto the boundary itself is not done here.
+
+\paragraph{Where $4/5$ comes from.}
+For $b_k = (2k-1)^2$, $k=1,\dots,m$, one has $\bar b = (4m^2-1)/3$ and
+\[
+\frac{\Var(b)}{\bar b^{\,2}} \;=\; \frac{16\,(m^2-1)}{5\,(4m^2-1)} \;\longrightarrow\; \frac45 .
+\]
+The constant of Theorem~\ref{thm:A} is the spectrum's own variance-to-mean-squared ratio; Section~\ref{sec:limit} shows that it is attained only in the limit and only along $t=1$.
+
+\paragraph{How the proofs are organised.}
+Both proofs are finite decompositions. The regime $\{(n,t)\}$ is cut into pieces; in each piece the excess is written as an exact quantity with an explicit error term, and the sign of the difference is decided by an exact polynomial certificate or by certified interval arithmetic. No asymptotic estimate is used anywhere: every $O(\cdot)$ that would appear in a classical treatment is replaced by an interval with proved endpoints. Section~\ref{sec:instrument} describes the two exact representations of the excess on which everything rests; Sections~\ref{sec:A} and \ref{sec:B} give the pieces; Section~\ref{sec:method} describes how the computations were checked.
+
+\section{The instrument: two exact representations of the excess}\label{sec:instrument}
+
+Write $g_t := -\Delta^2 \log p_t = \log R_t$, so that $R_t - 1 = \ee^{g_t}-1 > g_t$ and the theorems follow from lower bounds on $n\,g_t$. Two exact representations of $g_t$ are used, one where $t$ is small relative to $N$ and one where it is not.
+
+\subsection{The sampling expansion}\label{sec:sampling}
+
+Write $b_k = \bar b\,(1+\beta_k)$ with $\sum_k \beta_k = 0$. A uniformly random $t$-subset of the roots gives the finite identity
+\begin{equation}\label{eq:sampling}
+p_t \;=\; \bar b^{\,t}\sum_{j\ge 0} e_j(\beta)\,\frac{(t)_j}{(N)_j},
+\end{equation}
+where $(x)_j$ is the falling factorial and $e_j(\beta)$ the elementary symmetric functions of the $\beta_k$. In the variables $a = 1/\tau$ and $b = \tau^2/N$ (with $\tau$ standing for the index), the derivative in $\tau$ at fixed $N$ is the operator $D = -a^2\partial_a + 2ab\,\partial_b$, which annihilates every function of $1/N$. Consequently the sign of $N g_t - c$, for a constant $c$, is the sign of a polynomial in $\Qq[a,b,E]$ where $E = \ee^{a_2 b}$ is carried as a formal variable with $\partial_b E = a_2 E$. For the centred-square spectrum the first three coefficients of that polynomial in $a$ vanish identically and the fourth is the constant of Theorem~\ref{thm:A}; this is the content of the sparse certificate (piece C1 below).
+
+\subsection{The tilted weight and the variance identity}\label{sec:tilt}
+
+For $r>0$ put $q_k = b_k r/(1+b_k r)$ and let $S$ be the sum of independent Bernoulli variables with these parameters. Then $\Pr(S=t) = e_t r^t/\prod_k(1+b_k r)$, so $\Delta^3\log e_t = \Delta^3\log \Pr(S=t)$, the remaining terms being affine in $t$. Choosing $r$ at the saddle of $t$ and writing $K(\phi)$ for the cumulant generating function of $S$, the function
+\[
+P_r(\tau) = \frac{1}{2\pi}\int \ee^{K(\phi) - i\tau\phi}\,d\phi
+\]
+agrees with $e_\tau r^\tau/\prod_k(1+b_k r)$ at integers and satisfies $(\log P_r)'' = -\kappa_2[\phi]$ \emph{exactly}, where $\kappa_2[\phi]$ is the second cumulant of the tilted variable. Hence
+\begin{equation}\label{eq:tilt}
+g_t \;=\; \int_0^1\!\!\int_0^1 \kappa_2[\phi](t-1+u+v)\,du\,dv \;-\; \log\frac{(t+1)(N-t+1)}{t\,(N-t)},
+\end{equation}
+the second term being exact. The first term is expanded by an exact Edgeworth polynomial in the scaled cumulants of $S$, derived once on weight-truncated rational dictionaries; the cumulants themselves are closed forms (polygamma functions at complex argument for the centred squares; $\kappa_1 = N - x[\psi(N+1+x)-\psi(1+x)]$ with $\kappa_{j+1} = v\,\partial_v\kappa_j$ for $\{1,\dots,N\}$).
+
+The identity that makes the intervals survive is the \emph{variance identity}. With $\bar q$ the mean of the $q_k$, $Q = \bar q(1-\bar q)$ and $V = \Var(q)$,
+\begin{equation}\label{eq:variance}
+\sigma^2 = N(Q - V), \qquad \sigma_{\mathrm{bin}}^2 = N Q, \qquad \sigma_{\mathrm{bin}}^2 - \sigma^2 = \sum_k (q_k-\bar q)^2 = N V .
+\end{equation}
+The second relation is Newton's inequality ($V\ge0$); the theorems are statements about how much larger than zero $V$ is. Writing the leading term of $n g_t$ as $H = V/((Q-V)Q)$, one has
+\begin{equation}\label{eq:H45}
+H > \tfrac45 \iff V\,(5+4Q) > 4Q^2 ,
+\end{equation}
+which removes the cancellation of the two $1/\theta$ poles that would otherwise defeat any interval computation near $\theta = t/N \to 0$. Two further devices are used: a two-pass mean-value enclosure in the tilt, using the exact derivative rule for the cumulants; and, near the degenerate corner $\theta\to0$, an exact power series in the tilt whose coefficients lie in $\Qq[\zeta]$ and in which every $1/V$ term cancels symbolically.
+
+\section{Theorem \ref{thm:A}: the five pieces}\label{sec:A}
+
+Let $N = n-1$ and $\theta = t/N$. The regime $\{(n,t): n\ge5 \text{ odd},\ t<n/2\}$ is covered by five pieces.
+
+\paragraph{Piece A: the ladder, $t\le 627$, every odd $n$.}
+For fixed $t$ the quantity $p_t$ is a polynomial in $n$ of degree $2t$ with leading coefficient $3^{-t}$, so the sign of $M(n,t) - 4/5$ is the sign of
+\[
+Z_t(n) := 5n\,p_t(n)^2 - (5n+4)\,p_{t-1}(n)\,p_{t+1}(n),
+\]
+a polynomial with rational coefficients. The leading terms cancel identically, because at leading order in $n$ the spectrum degenerates to a single repeated root, which is Newton's equality case; what survives has degree $8t+10$ in $m = (n-1)/2$ with leading coefficient
+\begin{equation}\label{eq:lead}
+L_t = \frac{176}{175}\cdot\frac{2^{8t+10}}{3^{4t+6}} > 0 ,
+\end{equation}
+derived in closed form from four constants of the cumulant expansion (Section~\ref{sec:limit}). A polynomial with all coefficients non-negative after the substitution $n \mapsto n + c$ is positive for every $n \ge -c$; the certificate for index $t$ is the smallest such shift $c(t)$, together with the statement that $c(t)$ lies inside the regime $n \ge 2t+5$. Empirically $c(t) = t+5$ for odd $t$ and $c(t) = t+2$ for even $t\ge2$, with $c(0)=3$; the certificate does not rely on this pattern, only on the non-negativity of the shifted coefficients, which is checked exactly in integer arithmetic. The ladder of $627$ certificates was computed, logged, and re-checked from the log by an independent script (every index present once, every certificate column equal to its prediction); the run took $7.06$ hours.
+
+\paragraph{Piece B: two exact rows.}
+At $n = 1257$ and $n = 1259$ and every $t\ge 628$ the excess is computed exactly in rational arithmetic; the minima are $1.807$ and $1.804$. These rows are the base of the coverage argument for the certificates below.
+
+\paragraph{Piece C1: the sparse certificate, $t^2/N\le 1$, $t\ge 627$.}
+In the representation of Section~\ref{sec:sampling} the polynomial in $\Qq[a,b,E]$ whose sign decides $N g_t > 4/5$ has its first three coefficients in $a$ identically zero and its fourth equal to $176/175$ times $b^2$ exactly; the remaining terms are bounded on the region by explicit lemmas (a tail lemma for the $e_j(\beta)$, a moment lemma for the deviations $\beta_k$, and a bound $C_i \le i^2 2^i$ on the coefficient growth beyond $i=60$, all stated with their constants in the script and re-derived by an independent validator). The residual margin is $0.1417$.
+
+\paragraph{Piece C2: the dense certificate (a), $0.05\le\theta\le1/2$.}
+In the representation of Section~\ref{sec:tilt}, the region is covered by $930$ boxes in $(\theta, 1/N)$, adaptively subdivided; on each box the Edgeworth remainder and the cumulant tail are enclosed by explicit constants, and $N g_t$ is enclosed from below. The worst lower bound over all boxes is $0.800004$.
+
+\paragraph{Piece C3: the dense certificate (b), $\theta\le0.05$, $t^2/N\ge1$.}
+Near the corner the excess is written as an exact power series in the tilt variable $V$ with coefficients in $\Qq[\zeta]$; the constant term is exactly $4/5$, the next is $S(0) = 176/525$, and $18$ bands in $\zeta$ give $\min \ge 0.3206$ for the normalised remainder. The base polynomial, the perturbation term and the tail are separated so that no term contains a $1/V$ singularity.
+
+\paragraph{Coverage.}
+Piece A covers $t\le 627$ at every $n$. For $t\ge 628$ the three certificates C1--C3 are stated on overlapping regions: C1 reaches $b = t^2/N \le (628/629)^2$, its own stated condition; C3 reaches down past $b \approx 0.926$; C2 and C3 meet at $\theta = 0.05$. That every pair $(n,t)$ of the regime with $t \ge 628$ lies in at least one certified region was verified twice: by the assembly script in interval arithmetic, and independently by an exact enumeration of $280{,}756$ grid points with zero gaps.
+
+\section{The limit inequality and the constant}\label{sec:limit}
+
+The pieces above are self-contained, but the constant they certify has a closed-form origin, which we record because it explains why the decomposition works.
+
+\paragraph{The limit shape.}
+For the centred-square spectrum the generating polynomial has the exact closed form
+\[
+E(z) = \Big( \frac{(4z)^m\,\Gamma(m+\tfrac12+\zeta)\,\Gamma(m+\tfrac12-\zeta)\cos(\pi\zeta)}{\pi} \Big)^2, \qquad \zeta = \frac{-i}{2\sqrt z},
+\]
+and its saddle satisfies $\theta = 1 - \arctan(v)/v$. The limit of $n\,g_t$ at fixed $\theta$ is
+\begin{equation}\label{eq:Htheta}
+H(\theta) = \frac{2}{(1-\theta) - 1/(1+v^2)} - \frac{1}{\theta(1-\theta)},
+\end{equation}
+in which the two $1/\theta$ poles cancel. Its Taylor coefficients at $\theta=0$ are exact rationals, $h_0 = 4/5$, $h_1 = h_2 = 176/175$, $h_3 = 67328/67375, \dots$, all positive.
+
+\begin{proposition}\label{prop:limit}
+$H(\theta) > 4/5$ for every $\theta\in(0,1/2]$, with $H(0) = 4/5$.
+\end{proposition}
+
+Two proofs were carried out, sharing no code. In the variable $v$, with $A = \arctan(v)/v$ and $B = 1/(1+v^2)$, the identity $A' = (B-A)/v$ reduces the inequality \eqref{eq:H45} in the limit to
+\begin{equation}\label{eq:AB}
+(A-B)\,(5+4A-4A^2) \;<\; 10\,A\,(1-A), \qquad v>0,
+\end{equation}
+which is proved on $(0,0.2]$ by an exact rational series with leading term $(352/945)v^6$ and an alternating tail bounded by $6.8\times10^{-36}$, on $[0.2,3.5]$ by $359{,}637$ certified interval boxes, and for $v\ge3.5$ analytically, since $A(3.5) = 0.36928 < (14-\sqrt{116})/8$ makes $5-14A+4A^2>0$ there. The other proof works in $\theta$ directly, with $2{,}163{,}485$ boxes; both give the minimum gap $176/175$ at $\theta=0$.
+
+\paragraph{Why the top orders cancel.}
+Writing $p_t = a_t m^{2t}(1 + u_t/m + w_t/m^2 + \cdots)$ one finds $a_t = (4/3)^t$ and $u_t = -t(t-1)/5$. Thus $a_t^2 = a_{t-1}a_{t+1}$ --- the leading coefficients satisfy Newton's inequality with equality --- and $u_t$ is quadratic in $t$, so $\Delta^3 u = 0$. What survives at the next order is $44/175$, independent of $t$, which gives \eqref{eq:lead}. The same $176/175$ is the minimum gap of Proposition~\ref{prop:limit}; the constant of the theorem is not an observation but the value of an explicit function at zero, produced by two computations sharing no code.
+
+\paragraph{Sharpness.}
+$M(n,1) > 4/5$ is equivalent to $X(n) = \tfrac{56}{45}n^3 - \tfrac{172}{45}n^2 - \tfrac{16}{15}n > 0$, and $X(n+4)$ has four positive coefficients, so the inequality holds for every $n\ge4$; and $M(n,1) = \rho n/(N-1-\rho)$ with $\rho\to4/5$ from above, so $M(n,1)\downarrow 4/5$. Values: $1.3559, 1.0376, 0.9158, 0.8570, 0.8283, 0.8141$ at $n = 5, 11, 21, 41, 81, 161$.
+
+\section{Theorem \ref{thm:B}: the same machine on $\{1,\dots,N\}$}\label{sec:B}
+
+Sibuya's inequality reads, in the variable $j' = N - j$ (the number of missing indices at the top of the row),
+\[
+\frac{p_j^2}{p_{j-1}p_{j+1}} \;\ge\; 1 + \frac{1}{2N+3+j'} ,
+\]
+and by the reciprocal duality $e_j(1,\dots,N) = N!\,e_{N-j}(1,\tfrac12,\dots,\tfrac1N)$ it is a statement about $E_k := e_k(1,\tfrac12,\dots,\tfrac1N)$ with $k = j'$:
+\begin{equation}\label{eq:sibuyaE}
+E_{j'}^2 \;\ge\; T\,E_{j'+1}E_{j'-1}, \qquad T = \Big(1+\frac{1}{2N+3+j'}\Big)\frac{(j'+1)(N-j'+1)}{j'(N-j')} .
+\end{equation}
+The factor $(j'+1)(N-j'+1)/(j'(N-j'))$ is Newton's, and the theorem is exactly the extra factor $1 + 1/(2N+3+j')$.
+
+\paragraph{Pieces A$'$, C1$'$, C2$'$, C3$'$.}
+These are the ports of A, C1, C2, C3 to the spectrum $\{1,\dots,N\}$, with the target $1/(3n-j)$ in place of $4/5$: a ladder of $1000$ exact certificates (degree $2j-1$, shift $j+2$; $j=1$ is an identity); the sparse certificate with $[a^3]/b^2 = 2/3$ exactly and residual $0.29$; the dense certificate (a) with $756+84$ boxes and margins $5\times10^{-6}$ and $0.163$; and the dense certificate (b) with $S(0,\zeta) = 1/3$ exactly, $18$ bands, $\min\ge0.2398$. Together they give ranges (i) and (ii) of Theorem~\ref{thm:B}.
+
+\paragraph{Pieces D$'$, D$''$: the top of the row.}
+For $j' \le 32$ an exact incremental recursion $E_k(N) = E_k(N-1) + E_{k-1}(N-1)/N$ in certified arithmetic settles every $N\le 10^6$, bands in the harmonic number $H_N$ settle the middle range, and an analytic tail settles $N \ge 2^{48}$. For $33\le j'\le 802$ the same recursion settles $N\le10^6$; a third-order grid in $N$, with exact values of $E_k(N)$ at the grid points from the Gamma-ratio series $\sum_k E_k x^k = \Gamma(N+1+x)/(\Gamma(N+1)\Gamma(1+x))$ and a bracket that keeps the first-order cancellation in the step exact, settles $10^6 < N \le \ee^{20} \approx 4.85\times10^8$ in $4705$ steps with worst relative margin $1.92\times10^{-10}$; and for larger $N$ the $H$-model below settles the rest, all $770$ indices by one polynomial inequality each. This gives range (iii).
+
+\paragraph{The $H$-model, and why its limit is classical.}
+At fixed harmonic number $H = H_N$ the limit of $E_k(N)$ is $\hat E_k(H) = [x^k]\,\Phi(x)$ with
+\[
+\Phi(x) = \ee^{Hx}\prod_{m\ge1}\Big(1+\frac{x}{m}\Big)\ee^{-x/m} = \frac{\ee^{(H-\gamma)x}}{\Gamma(1+x)} ,
+\]
+a Laguerre--P\'olya function (genus one, zeros exactly at $-1,-2,\dots$). Such functions are locally uniform limits of real-rooted polynomials, so Newton's inequality passes to their coefficients by Hurwitz's theorem in the form $\hat E_k^2 \ge \frac{k+1}{k}\hat E_{k-1}\hat E_{k+1}$ --- precisely the limit of \eqref{eq:sibuyaE}. What the machine has to reach is therefore only the finite-$N$ factor $1+1/(2N+3+j')$, and this is done by writing $E_k(N) = \hat E_k(H) + v_2\hat E_{k-2}(H) + r_k$ with $v_2 = \psi'(N+1)/2$ and $|r_k| \le t^2 R_k(H)$, where $R_k$ is an explicit polynomial in $H$ obtained from one convolution and $t\ge1/N$. The first-order defect enters \eqref{eq:sibuyaE} through a single bracket in which the naive $k^2/H^2$ cancels (it is exactly $-2H^{2k-2}/(k!)^2$ in the Poisson limit); where that bracket is non-negative, which is verified on the finite range $[h_1,h_2]$ by a Bernstein-basis certificate, it is dropped, and above $h_2$ the per-term bound suffices. The whole statement for $N\ge\ee^{h_1}$ is then one polynomial inequality in $H$, settled for all $H\ge h_1$ at once by a Taylor shift with non-negative coefficients.
+
+\section{What is not proved}\label{sec:open}
+
+Sibuya's inequality remains open in the top decile of the row when many indices are missing:
+\[
+j \ge 1001, \qquad \theta = \frac{j}{n-1} > 0.9, \qquad n-1-j \ge 803 .
+\]
+Everything else is covered. Two instruments meet at that boundary and neither crosses it, for reasons that were measured rather than guessed. On the harmonic side, at fixed $j'$ and $N\to\infty$ the two sides of \eqref{eq:sibuyaE} agree to leading order --- in the natural variables the slack encloses zero to $\pm10^{-12}$ --- so the per-index certificate needs a starting height $h_1$ that grows with the index and a grid that grows with it, and no bound in this paper reaches the factor $1+1/(2N+3+j')$ uniformly in $j'$. On the box side, the tilted weight needs $\kappa_2 = j'/N$ to stay above the Edgeworth enclosure, and the region has a cusp at $(1/N,\,1/v)\to(0,0)$ which a box scheme walks into without ever becoming relatively thin. A literature search for a quantitative form of ultra-log-concavity that would supply the missing uniform gap returned nothing usable; the verdict, with the nearest results and why they do not apply, is recorded in the repository. What would close the corner is a new argument, not more computation: either the same machine in variables $(\mu, z)$ with $\mu = j'/N$, $1/N = \mu^2 z$, in which the sparse side is a rectangle instead of a cusp, or a lower bound for the Newton gap of the reciprocal spectrum $\{1/k\}$ uniform in the index.
+
+\section{How the computations were checked}\label{sec:method}
+
+Everything that decides a claim is exact rational arithmetic (\texttt{fmpq}, \texttt{fmpq\_poly}, \texttt{fmpz\_poly}) or certified interval arithmetic (\texttt{arb}, \texttt{acb}) from the FLINT/Arb library \cite{Arb2017} through \texttt{python-flint}. Floating point appears only in printing, in the adaptive choice of box and step sizes, and in loop bookkeeping --- never in a comparison on which a conclusion rests. Each certificate is a script that prints a verdict and exits $0$ or $1$; each run writes a log, and a merge script re-checks every ladder log (every index present once, every column equal to its prediction).
+
+Three further layers were applied. Each certificate was re-implemented by an independent validator that did not import the code it validated; three defects were found this way (a missing term in a $1/M_0$ bound, a non-analytic base object, a non-$\sigma$-free tail), fixed, and the scripts re-run. A release review listed seven blockers, all closed. Finally, on the day of release, two adversarial reviews were run against each theorem --- one hunting for derivation steps justified by an estimate, one re-deriving every load-bearing fact by a disjoint code path. On Theorem~\ref{thm:B} they found that one docstring bounded a ratio by its Poisson approximation where the approximation fails by a factor of $2.8$, and substituted $1/N\le\ee^{\gamma-H}$ in the unsafe direction; the conclusion had survived on unstated slack, and the step was rewritten so that no approximation appears in it (the polynomial defect above). On Theorem~\ref{thm:A} they found no fatal step; one check compared a loss against an unjustified threshold and now compares against the loss itself, and one boundary description was corrected. All review reports ship with the package.
+
+\section{Reproducing}
+
+The package (article, scripts, every log, validation and review reports, figures) is archived at Zenodo, DOI \texttt{10.5281/zenodo.22282840}, and maintained at \url{https://github.com/AndreiPLK/newton-excess}. With \texttt{uv} installed:
+\begin{verbatim}
+uv sync
+uv run python scripts/theorem.py --full          # Theorem 1, ~7 min
+uv run python scripts/sibuya_theorem.py --full   # Theorem 2, ~14 min
+uv run python scripts/sibuya_corner_grid.py 802  # the top of the row, ~80 min
+\end{verbatim}
+The ladder of Theorem~\ref{thm:A} is an artefact (7 hours); \texttt{theorem.py} re-checks its log and re-verifies a sample of rungs.
+
+\section*{Acknowledgements and disclosure}
+
+The proofs were constructed and the code written in collaboration with an AI assistant (Claude, Anthropic), under the author's direction. The model did not decide any claim's status: every status is set by a deterministic check over artefacts, and every claim in this paper is traceable to a logged run that a reader can repeat. The author has checked every step reported here and takes full responsibility for it. A fuller account of the roles, and of the errors made and corrected along the way, is in the file \texttt{AI\_DISCLOSURE.md} of the package.
+
+\begin{thebibliography}{9}
+
+\bibitem{Newton1707} I.~Newton, \emph{Arithmetica Universalis}, 1707.
+
+\bibitem{Sibuya1988} M.~Sibuya, Log-concavity of Stirling numbers and unimodality of Stirling distributions, \emph{Ann.\ Inst.\ Statist.\ Math.} 40 (1988), 693--714; equation (3.4).
+
+\bibitem{Lieb1968} E.~H.~Lieb, Concavity properties and a generating function for Stirling numbers, \emph{J.\ Combin.\ Theory} 5 (1968), 203--206.
+
+\bibitem{Hwang1995} H.-K.~Hwang, Asymptotic expansions for the Stirling numbers of the first kind, \emph{J.\ Combin.\ Theory Ser.\ A} 71 (1995), 343--351.
+
+\bibitem{CHR2024} C.~Cheung, A.~Hillman and G.~N.~Remmen, Bootstrap principle for the spectrum and scattering of strings, \emph{Phys.\ Rev.\ Lett.} 133 (2024), 251601; arXiv:2406.02665.
+
+\bibitem{LiangSagan2024} J.~Liang and B.~E.~Sagan, Log-concavity and log-convexity via distributive lattices, arXiv:2408.02782 (2024); Conjecture 8.9.
+
+\bibitem{BrandenHuh2020} P.~Br\"and\'en and J.~Huh, Lorentzian polynomials, \emph{Ann.\ of Math.} 192 (2020), 821--891.
+
+\bibitem{Arb2017} F.~Johansson, Arb: efficient arbitrary-precision midpoint-radius interval arithmetic, \emph{IEEE Trans.\ Comput.} 66 (2017), 1281--1292.
+
+\end{thebibliography}
+
+\end{document}
