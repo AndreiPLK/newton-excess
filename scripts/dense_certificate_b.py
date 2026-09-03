@@ -596,7 +596,14 @@ def main():
         f"  corner V <= {hi:.3e}: with L = sigma/2 = {float(Lc):.1f}, remainder {float(R_last):.2e}, loss <= {float(loss_corner):.2e}"
         f"  (S >= {float(S.evaluate(arb(hi / 2, hi / 2), zb).lower()):.4f} there; the corner is covered by monotonicity, see text)"
     )
-    ok = worst_S is not None and worst_S > 0 and float(loss_corner) < 0.1
+    # The corner is covered when S there exceeds the loss -- compared in arb, not against a magic threshold.
+    # (A debate agent found the earlier line testing `loss_corner < 0.1`, a number the text never justified;
+    # the true margin is fifteen orders of magnitude, so nothing changes, but the check now says what the
+    # claim says.)
+    S_corner = S.evaluate(arb(hi / 2, hi / 2), zb)
+    corner_ok = (S_corner - loss_corner).lower() > 0
+    print(f"  corner check: S >= {float(S_corner.lower()):.4f} against loss <= {float(loss_corner):.2e}: {corner_ok}")
+    ok = worst_S is not None and worst_S > 0 and corner_ok
     print()
     print(
         f"VERDICT: N g > 4/5 on the dense region (b) {{ V <= {VMAX}, zeta <= {ZMAX}, zeta V <= {ETAMAX} }}: {ok}   [{time.time() - t0:.0f} s]"
