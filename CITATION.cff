@@ -1,4 +1,7 @@
 cff-version: 1.2.0
+doi: 10.5281/zenodo.22282840
+version: 1.0.0
+date-released: 2026-09-03
 title: "A floor under Newton's inequality: a sharp constant for the centred-square spectrum, and Sibuya's 1988 conjecture"
 message: "If you use these results or the certificates, please cite this record."
 type: dataset

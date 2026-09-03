@@ -1,6 +1,6 @@
 # A floor under Newton's inequality
 
-**Andrei Pluzhnik** — ORCID [0009-0005-5660-2603](https://orcid.org/0009-0005-5660-2603)
+**Andrei Pluzhnik** — ORCID [0009-0005-5660-2603](https://orcid.org/0009-0005-5660-2603) · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22282840.svg)](https://doi.org/10.5281/zenodo.22282840)
 
 Newton proved in 1707 that the normalised coefficients of a real-rooted polynomial are log-concave:
 `p_t² ≥ p_{t-1} p_{t+1}`. This repository proves that for two classical families the inequality holds with a

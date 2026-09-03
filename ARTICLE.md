@@ -2,7 +2,7 @@
 
 **Andrei Pluzhnik** (ORCID 0009-0005-5660-2603)
 
-*Draft of 3 September 2026. Every numbered claim below is produced by a script in `release/scripts/`; every
+*Version 1.0.0, 3 September 2026. Archived at Zenodo, DOI [10.5281/zenodo.22282840](https://doi.org/10.5281/zenodo.22282840) (concept DOI 10.5281/zenodo.22282839). Every numbered claim below is produced by a script in `release/scripts/`; every
 script writes a log under `results/`. Sections 6 and 7 state exactly what is proved and what is not.*
 
 ---
